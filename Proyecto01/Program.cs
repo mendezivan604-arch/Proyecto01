@@ -163,7 +163,11 @@ do
             break;
         case 2:
             Console.WriteLine("Mostrando reglas del sistema...");
-            
+            Console.WriteLine("=== REGLAS ===");
+            Console.WriteLine("Todo público: cualquier hora");
+            Console.WriteLine("+13: 6 a 22");
+            Console.WriteLine("+18: 22 a 5");
+            Console.ReadKey();
             break;
         case 3:
             Console.WriteLine("Mostrando estadísticas de la sesión...");
