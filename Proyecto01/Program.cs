@@ -158,8 +158,6 @@ do
         case 1:
             Console.WriteLine("Evaluando nuevo contenido...");
             evaluarContenido();
-
-
             break;
         case 2:
             Console.WriteLine("Mostrando reglas del sistema...");
@@ -180,7 +178,34 @@ do
             break;
         case 3:
             Console.WriteLine("Mostrando estadísticas de la sesión...");
+            Console.WriteLine("=== ESTADÍSTICAS ===");
+            Console.WriteLine($"Total: {total}");
+            Console.WriteLine($"Publicados: {publicados}");
+            Console.WriteLine($"Rechazados: {rechazados}");
+            Console.WriteLine($"En revisión: {revision}");
+
+            double porcentaje;
+
+            if (total > 0)
+            {
+                porcentaje = (publicados * 100.0) / total;
+            }
+            else
+            {
+                porcentaje = 0;
+            }
+
+            Console.WriteLine($"% Aprobación: {porcentaje}%");
+
             
+            Console.Write("Publicados: ");
+            for (int i = 0; i < publicados; i++)
+            {
+                Console.Write("OK ");
+            }
+
+            Console.WriteLine();
+            Console.ReadKey();
             break;
         case 4:
             Console.WriteLine("Reiniciando estadísticas...");
