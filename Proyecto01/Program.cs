@@ -153,20 +153,29 @@ do
     menu();
     Console.Write("Seleccione una opción: ");
     opcion = int.Parse(Console.ReadLine());
-    switch(opcion)
+    switch (opcion)
     {
         case 1:
             Console.WriteLine("Evaluando nuevo contenido...");
             evaluarContenido();
-           
+
 
             break;
         case 2:
             Console.WriteLine("Mostrando reglas del sistema...");
             Console.WriteLine("=== REGLAS ===");
-            Console.WriteLine("Todo público: cualquier hora");
-            Console.WriteLine("+13: 6 a 22");
-            Console.WriteLine("+18: 22 a 5");
+            Console.WriteLine("Reglas de clasificación y horario");
+            Console.WriteLine("* Todo público: cualquier hora");
+            Console.WriteLine("* +13: 6 a 22");
+            Console.WriteLine("* +18: 22 a 5");
+            Console.WriteLine("Reglas de duración por tipo");
+            Console.WriteLine("* Película: 60–180 minutos");
+            Console.WriteLine("* Serie: 20–90 minutos");
+            Console.WriteLine("* Documental: 30–120 minutos");
+            Console.WriteLine("* Evento en vivo: 30–240 minutos");
+            Console.WriteLine("Reglas de producción");
+            Console.WriteLine("* Producción baja solo válida para Todo público o +13");
+            Console.WriteLine("* Producción media o alta válida para cualquier clasificación");
             Console.ReadKey();
             break;
         case 3:
