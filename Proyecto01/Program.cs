@@ -209,7 +209,15 @@ do
             break;
         case 4:
             Console.WriteLine("Reiniciando estadísticas...");
-            
+            total = 0;
+            publicados = 0;
+            rechazados = 0;
+            revision = 0;
+            impactoAlto = 0;
+            impactoMedio = 0;
+            impactoBajo = 0;
+            Console.WriteLine("Estadísticas reiniciadas");
+            Console.ReadKey();
             break;
         case 5:
             Console.WriteLine("Saliendo del programa...");
