@@ -1,10 +1,14 @@
 ﻿void menu()
 {
+    Console.WriteLine("==================================");
+    Console.WriteLine("   SISTEMA DE STREAMING");
+    Console.WriteLine("==================================");
     Console.WriteLine("1. Evaluar nuevo contenido");
     Console.WriteLine("2. Mostrar reglas del sistema");
-    Console.WriteLine("3. Mostrar estadísticas de la sesión");
+    Console.WriteLine("3. Mostrar estadísticas");
     Console.WriteLine("4. Reiniciar estadísticas");
     Console.WriteLine("5. Salir");
+    Console.WriteLine("==================================");
 }
 int opcion;
 string tipo;
@@ -54,7 +58,7 @@ void evaluarContenido()
     Console.Write("Nivel de producción (bajo, medio, alto): ");
     nivel = Console.ReadLine().ToLower();
 
-    Console.WriteLine("Analizando...");
+    SimularAnalisis();
 
     total++;
 
@@ -133,20 +137,49 @@ void evaluarContenido()
         impactoBajo++;
     }
 
-    
+
+    string decision;
+
     if (impacto == "alto")
     {
-        Console.WriteLine("ENVIAR A REVISIÓN");
+        decision = "ENVIAR A REVISIÓN";
         revision++;
     }
     else
     {
-        Console.WriteLine("PUBLICAR");
+        decision = "PUBLICAR";
         publicados++;
     }
 
-    Console.WriteLine($"Impacto: {impacto}");
+    MostrarResultado(decision, impacto);
     Console.ReadKey();
+}
+void SimularAnalisis()
+{
+    Console.Write("Analizando");
+    for (int i = 0; i < 3; i++)
+    {
+        System.Threading.Thread.Sleep(500);
+        Console.Write(".");
+    }
+    Console.WriteLine();
+}
+void MostrarResultado(string decision, string impacto)
+{
+    Console.WriteLine("=== RESULTADO FINAL ===");
+    Console.WriteLine($"Decisión: {decision}");
+    Console.WriteLine($"Impacto: {impacto}");
+}
+double CalcularPorcentaje(int total, int publicados)
+{
+    if (total > 0)
+    {
+        return (publicados * 100.0) / total;
+    }
+    else
+    {
+        return 0;
+    }
 }
 do
 {
@@ -157,6 +190,8 @@ do
     {
         case 1:
             Console.WriteLine("Evaluando nuevo contenido...");
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
             evaluarContenido();
             break;
         case 2:
@@ -184,16 +219,7 @@ do
             Console.WriteLine($"Rechazados: {rechazados}");
             Console.WriteLine($"En revisión: {revision}");
 
-            double porcentaje;
-
-            if (total > 0)
-            {
-                porcentaje = (publicados * 100.0) / total;
-            }
-            else
-            {
-                porcentaje = 0;
-            }
+            double porcentaje = CalcularPorcentaje();
 
             Console.WriteLine($"% Aprobación: {porcentaje}%");
 
@@ -201,7 +227,7 @@ do
             Console.Write("Publicados: ");
             for (int i = 0; i < publicados; i++)
             {
-                Console.Write("OK ");
+                Console.Write("|");
             }
 
             Console.WriteLine();
