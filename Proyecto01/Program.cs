@@ -28,14 +28,26 @@ void evaluarContenido()
 {
     Console.Clear();
 
-    Console.Write("Ingrese tipo (pelicula, serie, documental, evento): ");
-    tipo = Console.ReadLine().ToLower();
+    while (true)
+    {
+        Console.Write("Ingrese tipo (pelicula, serie, documental, evento): ");
+        tipo = Console.ReadLine().ToLower();
+
+        if (tipo == "pelicula" || tipo == "serie" || tipo == "documental" || tipo == "evento")
+        {
+            break;
+        }
+
+        Console.WriteLine("Tipo inválido. Intente nuevamente.");
+    }
 
     while (true)
     {
         Console.Write("Ingrese duración en minutos: ");
         if (double.TryParse(Console.ReadLine(), out duracion) && duracion > 0)
+        {
             break;
+        } 
         Console.WriteLine("Duración inválida");
     }
 
@@ -43,7 +55,10 @@ void evaluarContenido()
     {
         Console.Write("Clasificación (1.Todo público, 2.+13, 3.+18): ");
         if (int.TryParse(Console.ReadLine(), out clasificacion) && clasificacion >= 1 && clasificacion <= 3)
+        {
             break;
+        }
+            
         Console.WriteLine("Error");
     }
 
@@ -51,12 +66,24 @@ void evaluarContenido()
     {
         Console.Write("Hora (0-23): ");
         if (int.TryParse(Console.ReadLine(), out hora) && hora >= 0 && hora <= 23)
+        {
             break;
+        }
         Console.WriteLine("Error");
     }
 
-    Console.Write("Nivel de producción (bajo, medio, alto): ");
-    nivel = Console.ReadLine().ToLower();
+    while (true)
+    {
+        Console.Write("Nivel de producción (bajo, medio, alto): ");
+        nivel = Console.ReadLine().Trim().ToLower();
+
+        if (nivel == "bajo" || nivel == "medio" || nivel == "alto")
+        {
+            break;
+        }
+
+        Console.WriteLine("Nivel inválido. Intente nuevamente.");
+    }
 
     SimularAnalisis();
 
@@ -183,9 +210,10 @@ double CalcularPorcentaje(int total, int publicados)
 }
 do
 {
+    Console.Clear();
     menu();
     Console.Write("Seleccione una opción: ");
-    opcion = int.Parse(Console.ReadLine());
+    int.TryParse(Console.ReadLine(), out opcion);
     switch (opcion)
     {
         case 1:
@@ -219,7 +247,7 @@ do
             Console.WriteLine($"Rechazados: {rechazados}");
             Console.WriteLine($"En revisión: {revision}");
 
-            double porcentaje = CalcularPorcentaje();
+            double porcentaje = CalcularPorcentaje(total, publicados);
 
             Console.WriteLine($"% Aprobación: {porcentaje}%");
 
@@ -227,7 +255,7 @@ do
             Console.Write("Publicados: ");
             for (int i = 0; i < publicados; i++)
             {
-                Console.Write("|");
+                Console.Write("| ");
             }
 
             Console.WriteLine();
